@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Segmentation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Segmentation</h1>
+
+        <form id="segmentation-form" method="POST">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="income">Annual Income (k$):</label>
+            <input type="number" id="income" name="income" required>
+
+            <label for="spending">Spending Score (1-100):</label>
+            <input type="number" id="spending" name="spending" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <!-- Display prediction or error -->
+        {% if prediction is not none %}
+        <div class="result">
+            <h2>Prediction: Cluster {{ prediction }}</h2>
+        </div>
+        {% elif error %}
+        <div class="error">
+            <h2>Error: {{ error }}</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
